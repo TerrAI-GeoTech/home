@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TerrAI - AI-Powered Geotechnical Due Diligence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            overflow-x: hidden;
+        }
+        
+        /* Language Toggle */
+        .lang-jp {
+            display: none;
+        }
+        
+        body.jp .lang-en {
+            display: none;
+        }
+        
+        body.jp .lang-jp {
+            display: inline;
+        }
+        
+        /* Color System */
+        :root {
+            --earth-brown: #8B4513;
+            --soil-orange: #CD853F;
+            --tech-blue: #3498db;
+            --deep-gray: #34495e;
+            --light-gray: #ecf0f1;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #8B4513 0%, #CD853F 50%, #3498db 100%);
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .nav-container {
+            max-width: 1200px
