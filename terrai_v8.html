@@ -356,7 +356,7 @@
             color: var(--text);
         }
 
-        /* MARKET */
+        /* /* MARKET */
         .market { background: transparent; }
         .market-visual {
             display: flex;
@@ -381,7 +381,102 @@
         .market-circle:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(0,0,0,0.45); }
         .tam-separate { background: rgba(43,33,24,0.92); }
         .sam-separate { background: rgba(205,133,63,0.9); }
-        .som-separate { background: rgba(52,152,219,0.9); }
+        .som-separate { background: rgba(52,152,219,0.9); } */
+
+        /* MARKET */
+        .market {
+          background: transparent;
+        }
+        
+        .market-visual {
+          display: flex;
+          justify-content: center;
+          align-items: flex-end; /* align bottom edges */
+          gap: 3rem;
+          margin-top: 3rem;
+          flex-wrap: wrap;
+        }
+        
+        /* Shared style for all circles */
+        .market-circle {
+          border-radius: 50%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          color: white;
+          font-weight: 700;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+          transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        
+        /* Hover animation */
+        .market-circle:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+        }
+        
+        /* Individual circles with color and size hierarchy */
+        
+        /* TAM — largest, deep earthy brown */
+        .tam-separate {
+          background: linear-gradient(145deg, #4b2c15, #70421c);
+          width: 280px;
+          height: 280px;
+        }
+        
+        /* SAM — medium, lighter clay brown */
+        .sam-separate {
+          background: linear-gradient(145deg, #a76828, #c8873c);
+          width: 220px;
+          height: 220px;
+        }
+        
+        /* SOM — smallest, warm orange-gold */
+        .som-separate {
+          background: linear-gradient(145deg, #d98b3e, #e6a556);
+          width: 180px;
+          height: 180px;
+        }
+        
+        /* Responsive scaling for smaller screens */
+        @media (max-width: 1024px) {
+          .tam-separate {
+            width: 240px;
+            height: 240px;
+          }
+          .sam-separate {
+            width: 190px;
+            height: 190px;
+          }
+          .som-separate {
+            width: 160px;
+            height: 160px;
+          }
+        }
+        
+        @media (max-width: 768px) {
+          .market-visual {
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+          }
+        
+          .tam-separate {
+            width: 220px;
+            height: 220px;
+          }
+          .sam-separate {
+            width: 180px;
+            height: 180px;
+          }
+          .som-separate {
+            width: 150px;
+            height: 150px;
+          }
+        }
+        /* ****************************************** */
 
         /* CTA + FOOTER */
         .final-cta {
