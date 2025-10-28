@@ -18,7 +18,11 @@
       --accent: #c8873c;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto,
@@ -28,11 +32,16 @@
       line-height: 1.7;
     }
 
-    .lang-jp { display: none; }
-    body.jp .lang-en { display: none; }
-    body.jp .lang-jp { display: inline; }
+    .lang-jp {
+      display: none;
+    }
+    body.jp .lang-en {
+      display: none;
+    }
+    body.jp .lang-jp {
+      display: inline;
+    }
 
-    /* NAV */
     nav {
       position: fixed;
       top: 0;
@@ -40,7 +49,7 @@
       background: rgba(10, 16, 22, 0.7);
       backdrop-filter: blur(8px);
       padding: 1rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
       z-index: 1000;
     }
 
@@ -73,16 +82,18 @@
       font-weight: 500;
       transition: color 0.25s ease;
     }
-    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover {
+      color: var(--accent);
+    }
 
     .lang-toggle {
-      background: rgba(255,255,255,0.06);
+      background: rgba(255, 255, 255, 0.06);
       color: var(--text);
       padding: 0.4rem 1rem;
       border-radius: 8px;
       cursor: pointer;
       font-weight: 600;
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .cta-nav {
@@ -93,9 +104,10 @@
       font-weight: 700;
       transition: all 0.25s ease;
     }
-    .cta-nav:hover { background: var(--clay); }
+    .cta-nav:hover {
+      background: var(--clay);
+    }
 
-    /* HERO */
     .hero {
       position: relative;
       min-height: 100vh;
@@ -165,6 +177,34 @@
       margin-right: auto;
     }
 
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+
+    .stat-number {
+      font-size: 2.3rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+    .stat-label {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .cta-buttons {
+      margin-top: 2.2rem;
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
     .btn {
       padding: 0.95rem 1.6rem;
       border-radius: 10px;
@@ -174,7 +214,6 @@
       transition: all 0.25s ease;
       border: 1px solid transparent;
     }
-
     .btn-primary {
       background: var(--accent);
       color: white;
@@ -187,15 +226,38 @@
     .btn-secondary {
       background: transparent;
       color: var(--text);
-      border: 2px solid rgba(255,255,255,0.18);
+      border: 2px solid rgba(255, 255, 255, 0.18);
     }
     .btn-secondary:hover {
-      background: rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.08);
       color: white;
       transform: translateY(-2px);
     }
 
-    /* MARKET SECTION */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    section {
+      padding: 6rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3.2rem;
+    }
+    .section-header h2 {
+      font-size: 2.3rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 0.8rem;
+    }
+    .section-header p {
+      font-size: 1.1rem;
+      color: var(--text-dim);
+    }
+
     .market-visual {
       display: flex;
       justify-content: center;
@@ -238,13 +300,28 @@
       height: 180px;
     }
 
+    .final-cta {
+      padding: 6rem 0;
+      background: linear-gradient(
+        180deg,
+        rgba(26, 38, 53, 1) 0%,
+        rgba(14, 20, 26, 1) 100%
+      );
+      color: white;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .final-cta h2 {
+      font-size: 2.4rem;
+      margin-bottom: 1.6rem;
+    }
     footer {
       background: #0c1116;
       color: var(--text-dim);
       padding: 3rem 0;
       text-align: center;
     }
-
     .footer-links {
       display: flex;
       justify-content: center;
@@ -252,21 +329,92 @@
       margin-bottom: 1.2rem;
       flex-wrap: wrap;
     }
-
     .footer-links a {
       color: var(--text);
       text-decoration: none;
     }
-
     .footer-links a:hover {
       color: var(--accent);
     }
   </style>
 </head>
 <body>
-  <!-- Simplified for clarity -->
-  <h1 style="text-align:center;margin-top:120px;">
-    ✅ TerrAI Dark Theme (final with unified button + market gradient)
-  </h1>
+  <nav>
+    <div class="nav-container">
+      <div class="logo">TerrAI</div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#problem">Problem</a></li>
+        <li><a href="#solution">Solution</a></li>
+        <li><a href="#market">Market</a></li>
+        <li><a href="mailto:team@terrai.co.jp" class="cta-nav">Get Started</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>AI-Powered Geotechnical Intelligence</h1>
+      <p class="hero-subtitle">
+        TerrAI — transforming geotechnical expertise into scalable, data-driven
+        intelligence for faster, smarter, safer construction decisions.
+      </p>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-number">&lt;48h</div>
+          <div class="stat-label">Analysis Time</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">¥1M+</div>
+          <div class="stat-label">Saved Per Project</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">95%</div>
+          <div class="stat-label">Faster Reporting</div>
+        </div>
+      </div>
+      <div class="cta-buttons">
+        <a href="mailto:team@terrai.co.jp" class="btn btn-primary">Request Demo</a>
+        <a href="#solution" class="btn btn-primary">See How It Works</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="market" class="market">
+    <div class="container">
+      <div class="section-header">
+        <h2>A $15B Market Ready for Disruption</h2>
+        <p>Starting with Japan’s $400M geotechnical market, expanding globally.</p>
+      </div>
+      <div class="market-visual">
+        <div class="market-circle tam-separate">
+          <div>TAM<br /><strong>$15B</strong><br />Global</div>
+        </div>
+        <div class="market-circle sam-separate">
+          <div>SAM<br /><strong>$400M</strong><br />Japan</div>
+        </div>
+        <div class="market-circle som-separate">
+          <div>SOM<br /><strong>$20M</strong><br />Target</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <h2>Join Us to Transform Ground Intelligence</h2>
+    <div class="cta-buttons">
+      <a href="mailto:team@terrai.co.jp" class="btn btn-secondary">Contact Us</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#problem">Problem</a>
+      <a href="#solution">Solution</a>
+      <a href="#market">Market</a>
+    </div>
+    <p>© 2025 TerrAI Inc. All rights reserved.</p>
+  </footer>
 </body>
 </html>
