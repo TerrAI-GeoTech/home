@@ -1,1 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TerrAI - AI-Powered Ground Intelligence</title>
+
+  <style>
+    :root {
+      --earth: #8b4513;
+      --clay: #cd853f;
+      --sky: #3498db;
+      --deep: #2c3e50;
+      --sand: #f5f2ef;
+      --light: #ffffff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--sand);
+      color: var(--deep);
+      line-height: 1.75;
+      scroll-behavior: smooth;
+    }
+
+    /* ---------- NAV ---------- */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.92);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+      padding: 1rem 0;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--earth);
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--deep);
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover { color: var(--sky); }
+
+    .cta-nav {
+      background: var(--sky);
+      color: white !important;
+      padding: 0.5rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .cta-nav:hover { background: var(--earth); }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(160deg, rgba(43,33,24,0.95) 0%, rgba(44,62,80,0.95) 60%, rgba(52,152,219,0.9) 100%),
+        url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1400&q=80') center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      padding-top: 80px;
+    }
+
+    .hero-content {
+      max-width: 1000px;
+      padding: 0 2rem;
+      animation: fadeIn 1.2s ease;
+    }
+
+    .hero h1 {
+      font-size: 3.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--clay), var(--sky));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.3rem;
+      opacity: 0.95;
+      margin-bottom: 3rem;
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary { background: var(--sky); color: white; }
+    .btn-primary:hover { background: var(--earth); }
+
+    .btn-secondary {
+      border: 2px solid white; color: white;
+    }
+    .btn-secondary:hover {
+      background: white; color: var(--deep);
+    }
+
+    /* ---------- ABOUT ---------- */
+    .about {
+      background: linear-gradient(135deg, rgba(139,69,19,0.05) 0%, rgba(52,152,219,0.05) 100%);
+      padding: 6rem 0;
+    }
+
+    .about .section-header h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--deep);
+      margin-bottom: 2rem;
+    }
+
+    .about-content {
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: 1.15rem;
+      color: var(--deep);
+      line-height: 1.8;
+    }
+
+    .about-content strong { color: var(--earth); }
+    .about-content p + p { margin-top: 1.2rem; }
+
+    .about-content .tagline {
+      margin-top: 2.5rem;
+      text-align: center;
+      font-weight: 700;
+      color: var(--deep);
+    }
+
+    /* ---------- COMMON ---------- */
+    section { padding: 6rem 0; }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-header h2 {
+      font-size: 2.3rem;
+      font-weight: 700;
+      color: var(--deep);
+      margin-bottom: 1rem;
+    }
+
+    .section-header p {
+      font-size: 1.1rem;
+      color: var(--deep);
+      opacity: 0.8;
+    }
+
+    /* ---------- PROBLEM ---------- */
+    .problem {
+      background: #fff;
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .problem-card {
+      background: var(--sand);
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .problem-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    .problem-icon {
+      width: 60px; height: 60px; margin: 0 auto 1rem;
+      background: linear-gradient(135deg, var(--earth), var(--sky));
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 1.5rem;
+    }
+
+    .problem-card h3 { font-size: 1.3rem; margin-bottom: 1rem; }
+
+    /* ---------- SOLUTION ---------- */
+    .solution {
+      background: linear-gradient(135deg, rgba(52,152,219,0.06) 0%, rgba(139,69,19,0.06) 100%);
+    }
+
+    .solution-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 3rem;
+      align-items: center;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .solution-text ul {
+      list-style: none;
+      margin-top: 1rem;
+    }
+
+    .solution-text li {
+      padding: 0.6rem 0;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    .solution-text li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--earth);
+      font-weight: bold;
+    }
+
+    .solution-visual {
+      background: white;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    .ai-agents {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 2rem;
+    }
+
+    .agent {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .agent:nth-child(1){ background: var(--earth);}
+    .agent:nth-child(2){ background: var(--clay);}
+    .agent:nth-child(3){ background: var(--sky);}
+
+    .data-flow {
+      background: var(--sand);
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    /* ---------- MARKET ---------- */
+    .market {
+      background: white;
+    }
+
+    .market-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+
+    .market-circle {
+      border-radius: 50%;
+      width: 240px;
+      height: 240px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-weight: 600;
+      transition: transform 0.3s ease;
+    }
+
+    .market-circle:hover { transform: scale(1.05); }
+
+    .tam { background: rgba(43,33,24,0.9); }
+    .sam { background: rgba(205,133,63,0.9); }
+    .som { background: rgba(52,152,219,0.9); }
+
+    /* ---------- CTA ---------- */
+    .final-cta {
+      background: var(--deep);
+      color: white;
+      text-align: center;
+      padding: 6rem 0;
+    }
+
+    .final-cta h2 { font-size: 2.5rem; margin-bottom: 2rem; }
+    .final-cta .btn-secondary {
+      border-color: white; color: white;
+    }
+    .final-cta .btn-secondary:hover {
+      background: white; color: var(--deep);
+    }
+
+    footer {
+      background: var(--earth);
+      color: white;
+      padding: 3rem 0;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1rem;
+    }
+    footer a:hover { text-decoration: underline; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="nav-container">
+      <div class="logo">TerrAI</div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#problem">Problem</a></li>
+        <li><a href="#solution">Solution</a></li>
+        <li><a href="#market">Market</a></li>
+        <li><a href="mailto:team@terrai.co.jp" class="cta-nav">Get Started</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>AI-Powered Geotechnical Intelligence</h1>
+      <p class="hero-subtitle">
+        TerrAI — the AI platform that automates geotechnical design and risk assessment, helping developers and constructors make faster, smarter, and safer decisions.
+      </p>
+      <div class="cta-buttons">
+        <a href="mailto:team@terrai.co.jp" class="btn btn-primary">Request Demo</a>
+        <a href="#about" class="btn btn-secondary">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about">
+    <div class="section-header"><h2>About Us</h2></div>
+    <div class="about-content">
+      <p>
+        TerrAI is pioneering <strong>AI-powered Ground Intelligence</strong> — transforming geotechnical expertise into scalable, data-driven intelligence for smarter, faster, and safer construction decisions. Built by global researchers and engineers from leading institutions in Japan and the U.S., TerrAI bridges the gap between engineering intuition and AI precision. Our platform automates ground analysis and risk assessment, delivering standardized, reliable insights that accelerate design, boost productivity, and enhance confidence in every project.
+      </p>
+      <p class="tagline"><strong>Smart Decisions. Solid Foundations. Built with Confidence.</strong></p>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section id="problem" class="problem">
+    <div class="section-header">
+      <h2>Ground Investigation is Broken</h2>
+      <p>Traditional geotechnical due diligence is slow, expensive, and unreliable.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card"><div class="problem-icon">⏰</div><h3>Months of Delays</h3><p>Soil analysis can take months, delaying project timelines.</p></div>
+      <div class="problem-card"><div class="problem-icon">💰</div><h3>High Assessment Costs</h3><p>Expensive, unstandardized assessments across providers.</p></div>
+      <div class="problem-card"><div class="problem-icon">🎲</div><h3>Subjective Analysis</h3><p>Human judgment variability creates inconsistent risk evaluations.</p></div>
+      <div class="problem-card"><div class="problem-icon">📊</div><h3>Limited Data Use</h3><p>Over half of projects rely on incomplete or fragmented data.</p></div>
+      <div class="problem-card"><div class="problem-icon">👥</div><h3>Expert Bottleneck</h3><p>Dependence on few senior engineers limits scalability and consistency.</p></div>
+      <div class="problem-card"><div class="problem-icon">🔒</div><h3>Fragmented Knowledge</h3><p>Critical expertise trapped in disconnected files and legacy formats.</p></div>
+    </div>
+  </section>
+
+  <!-- SOLUTION -->
+  <section id="solution" class="solution">
+    <div class="section-header">
+      <h2>AI-Driven Decision Intelligence for GeoTechnical Engineering</h2>
+      <p>Transforming human expertise into scalable, reliable, automated intelligence.</p>
+    </div>
+    <div class="solution-content">
+      <div class="solution-text">
+        <p><strong>TerrAI</strong> transforms geotechnical expertise into scalable AI intelligence that delivers standardized, reliable ground analysis.</p>
+        <ul>
+          <li>Expert AI processes multimodal data.</li>
+          <li>Continuous learning improves accuracy.</li>
+          <li>Standardized reports ensure compliance.</li>
+          <li>Risk quantification converts intuition into insight.</li>
+        </ul>
+        <a href="mailto:team@terrai.co.jp" class="btn btn-primary">See How It Works</a>
+      </div>
+      <div class="solution-visual">
+        <div class="ai-agents">
+          <div class="agent">GEO</div>
+          <div class="agent">DATA</div>
+          <div class="agent">RISK</div>
+        </div>
+        <div class="data-flow">
+          Borehole Data → GIS Analysis → Risk Assessment → Automated Report Generation  
+          <br><strong>Transforming complex data into actionable insights.</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARKET -->
+  <section id="market" class="market">
+    <div class="section-header">
+      <h2>A $15B Market Ready for Disruption</h2>
+      <p>Starting with Japan’s $400M geotechnical market, with a clear path to global expansion.</p>
+    </div>
+    <div class="market-visual">
+      <div class="market-circle tam">
+        <div>TAM<br><span style="font-size:2rem;font-weight:700">$15B</span><br>Global</div>
+      </div>
+      <div class="market-circle sam">
+        <div>SAM<br><span style="font-size:2rem;font-weight:700">$400M</span><br>Japan</div>
+      </div>
+      <div class="market-circle som">
+        <div>SOM<br><span style="font-size:2rem;font-weight:700">$20M</span><br>Target</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <h2>Join Us to Transform Ground Intelligence</h2>
+    <div class="cta-buttons">
+      <a href="mailto:team@terrai.co.jp" class="btn btn-secondary">Contact Us</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      <a href="#problem">Problem</a> | 
+      <a href="#solution">Solution</a> |
+      <a href="#market">Market</a>
+    </p>
+    <p>© 2025 TerrAI Inc. All rights reserved.</p>
+  </footer>
+</body>
+</html>
 
